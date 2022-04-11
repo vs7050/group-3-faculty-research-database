@@ -66,6 +66,18 @@ public class DataLayer {
       return row;
    }
    
+   public void createStudent(String fname, String lname) {
+      try {
+         PreparedStatement stmt = conn.prepareStatement("INSERT INTO Student (fName, lName) VALUES (?, ?));
+         stmt.setString(1, fname);
+         stmt.setString(2, lname);
+         stmt.executeUpdate();
+      } catch (SQLException sqle) {
+         System.out.println("ERROR MESSAGE -> " + sqle);
+         System.exit(0);
+      }
+   }
+
    public int deletePhoneRecords(int passengerID) {
       int numRowsDel = 0;
       try {
