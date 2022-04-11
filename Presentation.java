@@ -6,7 +6,7 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 
 public class Presentation {
-   TravelDatabase dl = new TravelDatabase();
+   DataLayer dl = new DataLayer();
    private int columns;
    
    public Presentation() {
@@ -44,8 +44,8 @@ public class Presentation {
    }
 
    public static void main(String[] args) {
-      System.out.println("Author: Sze, Vincent");
-      JOptionPane.showMessageDialog(null, "Sze, Vincent", "Author", JOptionPane.INFORMATION_MESSAGE);
+      System.out.println("Author: Group 3");
+      JOptionPane.showMessageDialog(null, "Group 3", "Author", JOptionPane.INFORMATION_MESSAGE);
       new Presentation();
    }
 }
