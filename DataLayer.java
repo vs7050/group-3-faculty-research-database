@@ -11,7 +11,7 @@ public class DataLayer {
    private String sql;
    
    final String DEFAULT_DRIVER = "com.mysql.cj.jdbc.Driver";
-   final String url = "jdbc:mysql://localhost/travel";
+   final String url = "jdbc:mysql://localhost/library";
    
    public DataLayer() {
    }
