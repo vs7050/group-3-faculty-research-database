@@ -68,7 +68,7 @@ public class DataLayer {
    
    public void createStudent(String fname, String lname) {
       try {
-         PreparedStatement stmt = conn.prepareStatement("INSERT INTO Student (fName, lName) VALUES (?, ?));
+         PreparedStatement stmt = conn.prepareStatement("INSERT INTO Student (fName, lName) VALUES (?, ?)");
          stmt.setString(1, fname);
          stmt.setString(2, lname);
          stmt.executeUpdate();
