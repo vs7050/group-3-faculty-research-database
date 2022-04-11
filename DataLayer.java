@@ -1,14 +1,10 @@
-// Vincent Sze
-// Practical 01 - ISTE-330
-// 2/18/22
-
 import java.sql.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Scanner;
 import javax.swing.*;
 
-public class TravelDatabase {
+public class DataLayer {
    private Connection conn;
    private Statement stmt;
    private ResultSet rs;
@@ -17,7 +13,7 @@ public class TravelDatabase {
    final String DEFAULT_DRIVER = "com.mysql.cj.jdbc.Driver";
    final String url = "jdbc:mysql://localhost/travel";
    
-   public TravelDatabase() {
+   public DataLayer() {
    }
    
    public boolean connect() {
@@ -118,6 +114,6 @@ public class TravelDatabase {
    
    public static void main(String[] args) {
       System.out.println("Author: Sze, Vincent");
-      new TravelDatabase();
+      new DataLayer();
    }
 }
