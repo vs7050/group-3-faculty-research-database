@@ -51,15 +51,66 @@ public class DataLayer {
       return conn != null;
    }
    
-   public void createStudent(String fname, String lname) {
+   public int createStudent(String fname, String lname) {
+      int records = 0;
       try {
          PreparedStatement stmt = conn.prepareStatement("INSERT INTO Student (fName, lName) VALUES (?, ?)");
          stmt.setString(1, fname);
          stmt.setString(2, lname);
-         stmt.executeUpdate();
+         records = stmt.executeUpdate();
       } catch (SQLException sqle) {
          System.out.println("ERROR MESSAGE -> " + sqle);
+         return 0;
+         
       }
+      System.out.println("Number of records added to Student -> " + records);
+      return records;
+   }
+   
+   public int updateStudent(int studentID, String fname, String lname){
+   
+      int records = 0;
+      try{
+      
+         PreparedStatement stmt = conn.prepareStatement("UPDATE student SET fname = ?, lname = ? WHERE studentID = ?");
+         stmt.setString(1, fname);
+         stmt.setString(2, lname);
+         stmt.setInt(3, studentID);
+         records = stmt.executeUpdate();
+      
+      }
+      catch(SQLException sqle){
+      
+         System.out.println("ERROR MESSAGE -> " + sqle);
+         return 0;
+      
+      }
+      
+      System.out.println("Number of Student records updated -> " + records);
+      return records;
+   
+   }
+   
+   public int deleteStudent(int studentID){
+   
+      int records = 0;
+      try{
+      
+         PreparedStatement stmt = conn.prepareStatement("DELETE FROM student WHERE studentID = ?");
+         stmt.setInt(1, studentID);
+         records = stmt.executeUpdate();
+      
+      }
+      catch(SQLException sqle){
+      
+         System.out.println("ERROR MESSAGE -> " +sqle);
+         return 0;
+      
+      }
+      System.out.println("Number of Student records deleted -> " + records);
+      return records;
+      
+   
    }
    
    public void createFaculty(String lName, String fName)
