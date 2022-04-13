@@ -51,21 +51,6 @@ public class DataLayer {
       return conn != null;
    }
    
-   public int countStaff() {
-      int row = 0;
-      try {
-         stmt = conn.createStatement();
-         sql = "SELECT COUNT(*) FROM staff";
-         rs = stmt.executeQuery(sql);
-         rs.next();
-         row = rs.getInt(1);
-      } catch (SQLException sqle) {
-         System.out.println("ERROR MESSAGE -> " + sqle);
-         System.exit(0);
-      }
-      return row;
-   }
-   
    public void createStudent(String fname, String lname) {
       try {
          PreparedStatement stmt = conn.prepareStatement("INSERT INTO Student (fName, lName) VALUES (?, ?)");
@@ -74,39 +59,7 @@ public class DataLayer {
          stmt.executeUpdate();
       } catch (SQLException sqle) {
          System.out.println("ERROR MESSAGE -> " + sqle);
-         System.exit(0);
       }
-   }
-
-   public int deletePhoneRecords(int passengerID) {
-      int numRowsDel = 0;
-      try {
-         PreparedStatement stmt = conn.prepareStatement("DELETE FROM phone WHERE passengerID = ?");
-         stmt.setInt(1, passengerID);
-         
-         numRowsDel = stmt.executeUpdate();
-      } catch (SQLException sqle) {
-         System.out.println("ERROR MESSAGE -> " + sqle);
-         System.exit(0);
-      }
-      return numRowsDel;
-   }
-   
-   public int updateEquipment(int equipID, String equipmentName, String equipmentDescription, int equipmentCapacity) {
-      int numRowsUpdated = 0;
-      try {
-         PreparedStatement stmt = conn.prepareStatement("UPDATE equipment SET equipmentName = ?, equipmentDescription = ?, equipmentCapacity = ? WHERE equipID = ?");
-         stmt.setString(1, equipmentName);
-         stmt.setString(2, equipmentDescription);
-         stmt.setInt(3, equipmentCapacity);
-         stmt.setInt(4, equipID);
-         
-         numRowsUpdated = stmt.executeUpdate();
-      } catch (SQLException sqle) {
-         System.out.println("ERROR MESSAGE -> " + sqle);
-         System.exit(0);
-      }
-      return numRowsUpdated;
    }
    
    public boolean close() {
