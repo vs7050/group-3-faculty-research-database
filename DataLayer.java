@@ -62,6 +62,51 @@ public class DataLayer {
       }
    }
    
+   public void createFaculty(String lName, String fName)
+   {
+      try
+      {
+         PreparedStatement stmt = conn.prepareStatement("INSERT INTO Faculty (lName, fName) VALUES (?, ?)");
+         stmt.setString(1, lName);
+         stmt.setString(2, fName);
+         stmt.executeUpdate();
+      }
+      catch (SQLException sqle) 
+      {
+         System.out.println("ERROR MESSAGE -> " + sqle);
+      }
+   }
+   
+   public void updateFaculty(int facultyID, String lName, String fName)
+   {
+      try
+      {
+         PreparedStatement stmt = conn.prepareStatement("UPDATE Faculty SET lName = ?, fName = ? WHERE facultyID = ?");
+         stmt.setString(1, lName);
+         stmt.setString(2, fName);
+         stmt.setInt(3, facultyID);
+         stmt.executeUpdate();
+      }
+      catch (SQLException sqle) 
+      {
+         System.out.println("ERROR MESSAGE -> " + sqle);
+      }
+   }
+   
+   public void deleteFaculty(int facultyID)
+   {
+      try
+      {
+         PreparedStatement stmt = conn.prepareStatement("DELETE FROM Faculty WHERE facultyID = ?");
+         stmt.setInt(1, facultyID);
+         stmt.executeUpdate();
+      }
+      catch (SQLException sqle) 
+      {
+         System.out.println("ERROR MESSAGE -> " + sqle);
+      }
+   }
+   
    public boolean close() {
       try {
          if (conn != null) {
