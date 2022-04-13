@@ -113,48 +113,130 @@ public class DataLayer {
    
    }
    
-   public void createFaculty(String lName, String fName)
+   public int createFaculty(String lName, String fName)
    {
+      int records = 0;
       try
       {
          PreparedStatement stmt = conn.prepareStatement("INSERT INTO Faculty (lName, fName) VALUES (?, ?)");
          stmt.setString(1, lName);
          stmt.setString(2, fName);
-         stmt.executeUpdate();
+         records = stmt.executeUpdate();
       }
       catch (SQLException sqle) 
       {
          System.out.println("ERROR MESSAGE -> " + sqle);
       }
+      System.out.println("Number of records added to Faculty -> " + records);
+      return records;
    }
    
-   public void updateFaculty(int facultyID, String lName, String fName)
+   public int updateFaculty(int facultyID, String lName, String fName)
    {
+      int records = 0;
       try
       {
          PreparedStatement stmt = conn.prepareStatement("UPDATE Faculty SET lName = ?, fName = ? WHERE facultyID = ?");
          stmt.setString(1, lName);
          stmt.setString(2, fName);
          stmt.setInt(3, facultyID);
-         stmt.executeUpdate();
+         records = stmt.executeUpdate();
       }
       catch (SQLException sqle) 
       {
          System.out.println("ERROR MESSAGE -> " + sqle);
       }
+      System.out.println("Number of Faculty records updated -> " + records);
+      return records;
    }
    
-   public void deleteFaculty(int facultyID)
+   public int deleteFaculty(int facultyID)
    {
+      int records = 0;
       try
       {
          PreparedStatement stmt = conn.prepareStatement("DELETE FROM Faculty WHERE facultyID = ?");
          stmt.setInt(1, facultyID);
-         stmt.executeUpdate();
+         records = stmt.executeUpdate();
       }
       catch (SQLException sqle) 
       {
          System.out.println("ERROR MESSAGE -> " + sqle);
+         return 0;
+      }
+      System.out.println("Number of Faculty records deleted -> " + records);
+      return records;
+   }
+   
+   public int createFacultyInterest(int facultyID, int interestID)
+   {
+      int records = 0;
+      try
+      {
+         PreparedStatement stmt = conn.prepareStatement("INSERT INTO FacultyInterest (facultyID, interestID) VALUES (?, ?)");
+         stmt.setInt(1, facultyID);
+         stmt.setInt(2, interestID);
+         records = stmt.executeUpdate();
+      }
+      catch (SQLException sqle) 
+      {
+         System.out.println("ERROR MESSAGE -> " + sqle);
+         return 0;
+      }
+      System.out.println("Number of records added to FacultyInterest -> " + records);
+      return records;
+   }
+   
+   public int updateFacultyInterest(int facultyID, int interestIF)
+   {
+      int records = 0;
+      try
+      {
+         PreparedStatement stmt = conn.prepareStatement("UPDATE FacultyInterest SET interestID = ? WHERE facultyID = ?");
+         stmt.setInt(1, interestID);
+         stmt.setInt(2, facultyID);
+         records = stmt.executeUpdate();
+      }
+      catch (SQLException sqle) 
+      {
+         System.out.println("ERROR MESSAGE -> " + sqle);
+         return 0;
+      }
+      System.out.println("Number of FacultyInterest records updated -> " + records);
+      return records;
+   }
+   
+   public int deleteFacultyInterest(int facultyID, int interestID)
+   {
+      int records = 0;
+      try
+      {
+         PreparedStatement stmt = conn.prepareStatement("DELETE FROM Faculty WHERE facultyID = ? AND interestID = ?");
+         stmt.setInt(1, facultyID);
+         stmt.setInt(2, interestID);
+         records = stmt.executeUpdate();
+      }
+      catch (SQLException sqle) 
+      {
+         System.out.println("ERROR MESSAGE -> " + sqle);
+         return 0;
+      }
+      System.out.println("Number of FacultyInterest records deleted -> " + records);
+      return records;
+   }
+      
+   public boolean close() {
+      try {
+         if (conn != null) {
+            conn.close();
+         }
+         if (stmt != null) {
+            stmt.close();
+         }
+         return true;
+      } catch (SQLException sqle) {
+         System.out.println("ERROR MESSAGE -> " + sqle);
+         return false;
       }
    }
    
