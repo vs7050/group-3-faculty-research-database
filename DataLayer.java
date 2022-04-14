@@ -187,7 +187,7 @@ public class DataLayer {
       return records;
    }
    
-   public int updateFacultyInterest(int facultyID, int interestIF)
+   public int updateFacultyInterest(int facultyID, int interestID)
    {
       int records = 0;
       try
@@ -225,20 +225,7 @@ public class DataLayer {
       return records;
    }
       
-   public boolean close() {
-      try {
-         if (conn != null) {
-            conn.close();
-         }
-         if (stmt != null) {
-            stmt.close();
-         }
-         return true;
-      } catch (SQLException sqle) {
-         System.out.println("ERROR MESSAGE -> " + sqle);
-         return false;
-      }
-   }
+
    
    public boolean close() {
       try {
