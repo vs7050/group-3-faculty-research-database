@@ -56,8 +56,8 @@ public class DataLayer {
    public int createInterest(String interest) {
       int records = 0;
       try {
-         PreparedStatement stmt = conn.prepareStatement("");
-         stmt.setString(1, );
+         PreparedStatement stmt = conn.prepareStatement("INSERT INTO interest (interest) VALUES (?)");
+         stmt.setString(1, interest);
          records = stmt.executeUpdate();
       } catch (SQLException sqle) {
          System.out.println("ERROR MESSAGE -> " + sqle);
@@ -71,9 +71,9 @@ public class DataLayer {
    public int updateInterest(int interestID, String interest) {
       int records = 0;
       try {
-         PreparedStatement stmt = conn.prepareStatement("");
-         stmt.setString(1, );
-         stmt.setString(2, );
+         PreparedStatement stmt = conn.prepareStatement("UPDATE interest SET interest = ? WHERE interestID = ?");
+         stmt.setString(1, interest);
+         stmt.setInt(2, interestID);
          records = stmt.executeUpdate();
       } catch (SQLException sqle) {
          System.out.println("ERROR MESSAGE -> " + sqle);
@@ -84,12 +84,11 @@ public class DataLayer {
       return records;
    } // updateInterest
 
-   public int deleteInterest(int interestID, String interest) {
+   public int deleteInterest(int interestID) {
       int records = 0;
       try {
-         PreparedStatement stmt = conn.prepareStatement("");
-         stmt.setString(1, );
-         stmt.setString(2, );
+         PreparedStatement stmt = conn.prepareStatement("DELETE FROM interest WHERE interestID = ?");
+         stmt.setInt(1, interestID);
          records = stmt.executeUpdate();
       } catch (SQLException sqle) {
          System.out.println("ERROR MESSAGE -> " + sqle);
