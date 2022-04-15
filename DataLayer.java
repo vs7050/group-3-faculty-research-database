@@ -104,9 +104,9 @@ public class DataLayer {
    public int createAbstract(String abs, String absDate) {
       int records = 0;
       try {
-         PreparedStatement stmt = conn.prepareStatement("");
-         stmt.setString(1, );
-         stmt.setString(2, );
+         PreparedStatement stmt = conn.prepareStatement("INSERT INTO abstract (abstract, abstractDate) VALUES (?, ?)");
+         stmt.setString(1, abs);
+         stmt.setDate(2, absDate);
          records = stmt.executeUpdate();
       } catch (SQLException sqle) {
          System.out.println("ERROR MESSAGE -> " + sqle);
@@ -120,9 +120,10 @@ public class DataLayer {
    public int udpateAbstract(int absID, String abs, String absDate) {
       int records = 0;
       try {
-         PreparedStatement stmt = conn.prepareStatement("");
-         stmt.setString(1, );
-         stmt.setString(2, );
+         PreparedStatement stmt = conn.prepareStatement("UPDATE abstract SET abstract = ?, abstractDate = ? WHERE abstractID = ?");
+         stmt.setString(1, abs);
+         stmt.setDate(2, absDate);
+         stmt.setInt(3, absID);
          records = stmt.executeUpdate();
       } catch (SQLException sqle) {
          System.out.println("ERROR MESSAGE -> " + sqle);
@@ -133,12 +134,11 @@ public class DataLayer {
       return records;
    } // udpateAbstract
 
-   public int deleteAbstract(String abs, String absDate) {
+   public int deleteAbstract(int abstractID) {
       int records = 0;
       try {
-         PreparedStatement stmt = conn.prepareStatement("");
-         stmt.setString(1, );
-         stmt.setString(2, );
+         PreparedStatement stmt = conn.prepareStatement("DELETE FROM abstract WHERE abstractID = ?");
+         stmt.setInt(1, abstractID);
          records = stmt.executeUpdate();
       } catch (SQLException sqle) {
          System.out.println("ERROR MESSAGE -> " + sqle);
