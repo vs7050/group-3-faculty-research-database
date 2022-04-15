@@ -8,7 +8,7 @@ public class Presentation {
    
    
    public Presentation() {
-      System.out.println("Connecting to travel database...");
+      System.out.println("Connecting to faculty database...");
       dl.connect();
       
       dl.close();
