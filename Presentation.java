@@ -1,19 +1,18 @@
-import java.sql.*;
 import javax.swing.JOptionPane;
 import java.util.*;
+import Sources.GetInput;
 
 public class Presentation {
 
    String facultyUser = "faculty";
    String facultyPassword = "faculty123";
    DataLayer dl = new DataLayer();
-   Scanner scn = new Scanner(System.in);
    
    public Presentation() {
       System.out.println("Attempting to connect to the database...\n");
       dl.connect();
       System.out.print("\nWould you like to log in as faculty? (Y/N): ");
-      String yesOrNo = scn.nextLine();
+      String yesOrNo = GetInput.readLine();
       if(yesOrNo.equals("Y")){
       
          doFacultyLoop();
@@ -32,9 +31,9 @@ public class Presentation {
    public void doFacultyLoop(){
    
       System.out.print("\nEnter a faculty username: ");
-      String user = scn.nextLine();
+      String user = GetInput.readLine();
       System.out.print("\nEnter faculty password: ");
-      String pass = scn.nextLine();
+      String pass = GetInput.readLine();
       if(user.equals(facultyUser) && pass.equals(facultyPassword)){
       
          System.out.println("Faculty credentials accepted.. \nLogging in!");
@@ -51,7 +50,7 @@ public class Presentation {
       
          System.out.println("-----------------------------------------------------------------------");
          System.out.print("\nEnter an option:\n1. Add a faculty\n2. Add an abstract\n3. Exit\n\nSelection: ");
-         choice = Integer.parseInt(scn.nextLine());
+         choice = Integer.parseInt(GetInput.readLine());
          switch(choice){
             case 1:
                System.out.print("\nEnter a faculty lastname: ");
