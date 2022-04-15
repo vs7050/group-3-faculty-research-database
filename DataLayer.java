@@ -202,9 +202,11 @@ public class DataLayer {
    public int createStudentContact(int studentID, int roomNumber, String phoneNumber, String emailAddress) {
       int records = 0;
       try {
-         PreparedStatement stmt = conn.prepareStatement("");
-         stmt.setString(1, );
-         stmt.setString(2, );
+         PreparedStatement stmt = conn.prepareStatement("INSERT INTO studentcontact VALUES (?, ?, ?, ?)");
+         stmt.setInt(1, studentID);
+         stmt.setInt(2, roomNumber);
+         stmt.setString(3, phoneNumber);
+         stmt.setString(4, emailAddress);
          records = stmt.executeUpdate();
       } catch(SQLException sqle) {
          System.out.println("ERROR MESSAGE -> " +sqle);
@@ -218,10 +220,11 @@ public class DataLayer {
    public int updateStudentContact(int studentID, int roomNumber, String phoneNumber, String emailAddress) {
       int records = 0;
       try {
-         PreparedStatement stmt = conn.prepareStatement("");
-         stmt.setString(1, );
-         stmt.setString(2, );
-         stmt.setInt(3, );
+         PreparedStatement stmt = conn.prepareStatement("UPDATE studentcontact SET roomNumber = ?, phoneNumber = ?, emailAddress = ? WHERE studentID = ?");
+         stmt.setInt(1, roomNumber);
+         stmt.setString(2, phoneNumber);
+         stmt.setString(3, emailAddress);
+         stmt.setInt(4, studentID);
          records = stmt.executeUpdate();
       } catch(SQLException sqle) {
          System.out.println("ERROR MESSAGE -> " + sqle);
@@ -232,13 +235,11 @@ public class DataLayer {
       return records;
    } // updateStudentContact
 
-   public int deleteStudentContact(int studentID, int roomNumber, String phoneNumber, String emailAddress) {
+   public int deleteStudentContact(int studentID) {
       int records = 0;
       try {
-         PreparedStatement stmt = conn.prepareStatement("");
-         stmt.setString(1, );
-         stmt.setString(2, );
-         stmt.setInt(3, );
+         PreparedStatement stmt = conn.prepareStatement("DELETE FROM studentContact WHERE studentID = ?");
+         stmt.setInt(1, studentID);
          records = stmt.executeUpdate();
       } catch(SQLException sqle) {
          System.out.println("ERROR MESSAGE -> " + sqle);
@@ -252,9 +253,9 @@ public class DataLayer {
    public int createStudentInterest(int studentID, int interestID) {
       int records = 0;
       try {
-         PreparedStatement stmt = conn.prepareStatement("");
-         stmt.setString(1, );
-         stmt.setString(2, );
+         PreparedStatement stmt = conn.prepareStatement("INSERT INTO studentinterest VALUES (? , ?)");
+         stmt.setInt(1, studentID);
+         stmt.setInt(2, interestID);
          records = stmt.executeUpdate();
       } catch(SQLException sqle) {
          System.out.println("ERROR MESSAGE -> " +sqle);
@@ -268,10 +269,9 @@ public class DataLayer {
    public int updateStudentInterest(int studentID, int interestID) {
       int records = 0;
       try {
-         PreparedStatement stmt = conn.prepareStatement("");
-         stmt.setString(1, );
-         stmt.setString(2, );
-         stmt.setInt(3, );
+         PreparedStatement stmt = conn.prepareStatement("UPDATE studentinterest SET interestID = ? WHERE studentID = ?");
+         stmt.setInt(1, interestID);
+         stmt.setInt(2, studentID);
          records = stmt.executeUpdate();
       } catch(SQLException sqle) {
          System.out.println("ERROR MESSAGE -> " + sqle);
@@ -282,13 +282,11 @@ public class DataLayer {
       return records;
    } // updateStudentInterest
 
-   public int deleteStudentInterest(int studentID, int interestID) {
+   public int deleteStudentInterest(int studentID) {
       int records = 0;
       try {
-         PreparedStatement stmt = conn.prepareStatement("");
-         stmt.setString(1, );
-         stmt.setString(2, );
-         stmt.setInt(3, );
+         PreparedStatement stmt = conn.prepareStatement("DELETE FROM studentinterest WHERE studentID = ?");
+         stmt.setInt(1, studentID);
          records = stmt.executeUpdate();
       } catch(SQLException sqle) {
          System.out.println("ERROR MESSAGE -> " + sqle);
