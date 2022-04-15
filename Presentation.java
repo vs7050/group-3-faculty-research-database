@@ -1,6 +1,5 @@
 import javax.swing.JOptionPane;
 import java.util.*;
-import Sources.GetInput;
 
 public class Presentation {
 
@@ -59,13 +58,19 @@ public class Presentation {
                String fName = GetInput.readLine();
                dl.createFaculty(lName, fName);
                break;
-         
+            case 2:
+               System.out.print("\nEnter abstract text here: ");
+               String abs = GetInput.readLine();
+               System.out.print("\nEnter the abstract date(YYYY-MM-DD): ");
+               String date = GetInput.readLine();
+               dl.createAbstract(abs, date);
+               break;
+            case 3:
+               break;
          
          }
       
-      }
-      
-      
+      } 
    
    }
 }
