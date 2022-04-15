@@ -1,14 +1,9 @@
 import java.sql.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.Scanner;
-import javax.swing.*;
+import Sources.GetInput;
 
 public class DataLayer {
    private Connection conn;
    private Statement stmt;
-   private ResultSet rs;
-   private String sql;
    
    final String DEFAULT_DRIVER = "com.mysql.cj.jdbc.Driver";
    final String url = "jdbc:mysql://localhost/library";
@@ -18,10 +13,9 @@ public class DataLayer {
    
    public boolean connect() {
       String userName = "";
-      Scanner s = new Scanner(System.in);
       String password = new String();
       String passwordInput = new String();
-      
+
       try {
          Class.forName(DEFAULT_DRIVER);
          
@@ -29,7 +23,7 @@ public class DataLayer {
          userName = GetInput.readLine();
          
          System.out.print("Password: ");
-         passwordInput = s.nextLine();
+         passwordInput = GetInput.readLine();
          
          if (passwordInput.equals("")) {
             password = "student";
@@ -106,7 +100,7 @@ public class DataLayer {
       try {
          PreparedStatement stmt = conn.prepareStatement("INSERT INTO abstract (abstract, abstractDate) VALUES (?, ?)");
          stmt.setString(1, abs);
-         stmt.setDate(2, absDate);
+         stmt.setDate(2, java.sql.Date.valueOf(absDate));
          records = stmt.executeUpdate();
       } catch (SQLException sqle) {
          System.out.println("ERROR MESSAGE -> " + sqle);
@@ -122,7 +116,7 @@ public class DataLayer {
       try {
          PreparedStatement stmt = conn.prepareStatement("UPDATE abstract SET abstract = ?, abstractDate = ? WHERE abstractID = ?");
          stmt.setString(1, abs);
-         stmt.setDate(2, absDate);
+         stmt.setDate(2, java.sql.Date.valueOf(absDate));
          stmt.setInt(3, absID);
          records = stmt.executeUpdate();
       } catch (SQLException sqle) {
@@ -346,12 +340,15 @@ public class DataLayer {
       return records;
    } // deleteFaculty
 
-   public int createFacultyContact(int facultyID, int roomNumber, String phoneNumber, String emailAddress) {
+   public int createFacultyContact(int facultyID, int roomNumber, String phoneNumber, String emailAddress, String officeHours) {
       int records = 0;
       try {
-         PreparedStatement stmt = conn.prepareStatement("");
-         stmt.setInt(1, );
-         stmt.setInt(2, );
+         PreparedStatement stmt = conn.prepareStatement("INSERT INTO facultycontact (facultyID, roomNumber, phoneNumber, emailAddress, officeHours) VALUES (?, ?, ?, ?, ?)");
+         stmt.setInt(1, facultyID);
+         stmt.setInt(2, roomNumber);
+         stmt.setString(3, phoneNumber);
+         stmt.setString(4, emailAddress);
+         stmt.setString(5, officeHours);
          records = stmt.executeUpdate();
       } catch (SQLException sqle) {
          System.out.println("ERROR MESSAGE -> " + sqle);
@@ -361,12 +358,15 @@ public class DataLayer {
       return records;
    } // createFacultyInterest
 
-   public int updateFacultyContact(int facultyID, int roomNumber, String phoneNumber, String emailAddress) {
+   public int updateFacultyContact(int facultyID, int roomNumber, String phoneNumber, String emailAddress, String officeHours) {
       int records = 0;
       try {
-         PreparedStatement stmt = conn.prepareStatement("");
-         stmt.setInt(1, );
-         stmt.setInt(2, );
+         PreparedStatement stmt = conn.prepareStatement("UPDATE facultycontact SET roomNumber = ?, phoneNumber = ?, emailAddress = ?, officeHours = ? WHERE facultyID = ?");
+         stmt.setInt(2, roomNumber);
+         stmt.setString(3, phoneNumber);
+         stmt.setString(4, emailAddress);
+         stmt.setString(5, officeHours);
+         stmt.setInt(1, facultyID);
          records = stmt.executeUpdate();
       } catch (SQLException sqle) {
          System.out.println("ERROR MESSAGE -> " + sqle);
@@ -376,12 +376,11 @@ public class DataLayer {
       return records;
    } // updateFacultyContact
 
-   public int deleteFacultyContact(int facultyID, int roomNumber, String phoneNumber, String emailAddress) {
+   public int deleteFacultyContact(int facultyID) {
       int records = 0;
       try {
-         PreparedStatement stmt = conn.prepareStatement("");
-         stmt.setInt(1, );
-         stmt.setInt(2, );
+         PreparedStatement stmt = conn.prepareStatement("DELETE FROM facultycontact WHERE facultyID = ?");
+         stmt.setInt(1, facultyID);
          records = stmt.executeUpdate();
       } catch (SQLException sqle) {
          System.out.println("ERROR MESSAGE -> " + sqle);
@@ -394,7 +393,7 @@ public class DataLayer {
    public int createFacultyInterest(int facultyID, int interestID) {
       int records = 0;
       try {
-         PreparedStatement stmt = conn.prepareStatement("INSERT INTO FacultyInterest (facultyID, interestID) VALUES (?, ?)");
+         PreparedStatement stmt = conn.prepareStatement("INSERT INTO facultyinterest (facultyID, interestID) VALUES (?, ?)");
          stmt.setInt(1, facultyID);
          stmt.setInt(2, interestID);
          records = stmt.executeUpdate();
@@ -409,7 +408,7 @@ public class DataLayer {
    public int updateFacultyInterest(int facultyID, int interestID) {
       int records = 0;
       try {
-         PreparedStatement stmt = conn.prepareStatement("UPDATE FacultyInterest SET interestID = ? WHERE facultyID = ?");
+         PreparedStatement stmt = conn.prepareStatement("UPDATE facultyinterest SET interestID = ? WHERE facultyID = ?");
          stmt.setInt(1, interestID);
          stmt.setInt(2, facultyID);
          records = stmt.executeUpdate();
