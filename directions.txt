@@ -1,0 +1,35 @@
+ISTE-330.01
+GROUP PROJECT FACULTY STUDENT DATABASE
+
+GROUP 3
+Lombardo, Jake
+Susz, Andrew
+Sze, Vincent
+Vay, Ryan
+
+DIRECTIONS:
+===================================
+PRESENTATION LAYER
+===================================
+
+++++++++++++++
+Database Login
+++++++++++++++
+
+The presentation layer opens by printing out the author of our project. Then it connects to the faculty database. It will prompt the user for a username, which will be "root". It will then prompt the user for a password, which can be many things. It can either be a password that you made for SQL when downloading the program, or you can leave the password field blank and the password will default "student".
+
+++++++++++++++
+Faculty Login
+++++++++++++++
+
+The next step in the presentation layer is that you will be asked if you want to log in as a faculty. If you type in "Y", then you will prompted for a username and password. The faculty username is "faculty". The password for faculty currently is "faculty123". These can also be found hard coded in the presentation layer.
+
+++++++++++++++
+Faculty Options
+++++++++++++++
+
+Currently, there is not a lot of function to the faculty. The two options you can do as a faculty is add faculty and add an abstract. Selecting the number 1 will let you input the faculty. It will prompt you for a last name and first name and add the faculty.
+
+The next option, being 2, will let you add an abstract. It will prompt you for the abstract and a date and input them.
+
+The last option, being 3, will exit the program.
