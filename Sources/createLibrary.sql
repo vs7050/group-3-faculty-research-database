@@ -43,6 +43,7 @@ CREATE TABLE FacultyContact(
    roomNumber VARCHAR(8),
    phoneNumber VARCHAR(12),
    emailAddress VARCHAR(50),
+   officeHours VARCHAR(50),
    PRIMARY KEY (facultyID),
    CONSTRAINT faculty_facultyID_pk FOREIGN KEY (facultyID) REFERENCES Faculty(facultyID)
 );
