@@ -19,11 +19,16 @@ public class DataLayer {
       try {
          Class.forName(DEFAULT_DRIVER);
          
-         System.out.print("Username: ");
+         System.out.print("Username (default - root): ");
          userName = GetInput.readLine();
+         if(userName.equals("")){
+            
+            userName = "root";
          
-         System.out.print("Password: ");
-         passwordInput = GetInput.readLine();
+         }
+         
+         System.out.print("Password (default - student): ");
+         passwordInput = s.nextLine();
          
          if (passwordInput.equals("")) {
             password = "student";
