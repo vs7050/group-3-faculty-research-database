@@ -8,17 +8,40 @@ public class Presentation {
    DataLayer dl = new DataLayer();
    
    public Presentation() {
-      System.out.println("Attempting to connect to the database...\n");
-      dl.connect();
-      System.out.print("\nWould you like to log in as faculty? (Y/N): ");
-      String yesOrNo = GetInput.readLine();
-      if(yesOrNo.equals("Y")){
+      System.out.println("Welcome to the Faculty and Student Connection Database!");
       
-         doFacultyLoop();
       
+      boolean keepGoing = true;
+      while(keepGoing){
+         
+         System.out.print("Would you like to log in as a Student or Faculty?(student/faculty): ");
+         String choice = GetInput.readLine();
+      
+         if(choice.equals("faculty")){
+         
+            System.out.println("Attempting to connect to the database...\n");
+            dl.connect();
+            doFacultyLoop();
+            keepGoing = false;
+         
+         }
+         else if(choice.equals("student")){
+         
+            System.out.println("Attempting to connect to the database...\n");
+            dl.connect();
+            doStudentLoop();
+            keepGoing = false;
+         
+         }
+         else{
+         
+            System.out.println("Please enter a valid choice!\n");
+            keepGoing = true;
+         
+         }
+         
       }
       
-      dl.close();
    }
 
    public static void main(String[] args) {
@@ -71,6 +94,12 @@ public class Presentation {
          }
       
       } 
+   
+   }
+   
+   public void doStudentLoop(){
+   
+   
    
    }
 }
