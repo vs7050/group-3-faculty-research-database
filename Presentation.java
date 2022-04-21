@@ -96,10 +96,55 @@ public class Presentation {
       } 
    
    }
-   
+   // loop for the student to choose options
    public void doStudentLoop(){
    
-   
+      int choice = 0;
+      int records = 0;
+      while(choice != 3){
+      
+         System.out.println("\n-----------------------------------------------------------------------");
+         System.out.print("\nEnter an option:\n1. Add Student\n2. Add Student Contact\n3. Add Interests\n4. Exit\n\nSelection: ");
+         choice = Integer.parseInt(GetInput.readLine());
+         switch(choice){
+         
+            case 1:
+               System.out.print("\nEnter a student first name: ");
+               String fname = GetInput.readLine();
+               System.out.print("\nEnter a student last name: ");
+               String lname = GetInput.readLine();
+               records = dl.createStudent(fname, lname);
+               System.out.println("Amount of records added to student -> " + records);
+               dl.doSeeStudents();
+               break;
+            case 2:
+               dl.doSeeStudents();
+               System.out.print("\nEnter a student ID: ");
+               int studentID = GetInput.readInt();
+               System.out.print("\nEnter a room number: ");
+               int roomNum = GetInput.readInt();
+               System.out.print("\nEnter a phone number: ");
+               String phoneNum = GetInput.readLine();
+               System.out.print("\nEnter an email address: ");
+               String email = GetInput.readLine();
+               records = dl.createStudentContact(studentID, roomNum, phoneNum, email);
+               System.out.println("Amount of records added to student contact -> " + records);
+               break;
+            case 3:
+               dl.doSeeStudents();
+               System.out.print("\nEnter a student ID: ");
+               int sID = GetInput.readInt();
+               System.out.print("\nEnter a interest ID: ");
+               int iID = GetInput.readInt();
+               records = dl.createStudentInterest(sID, iID);
+               System.out.println("Amount of records added to studentInterest -> " + records);
+               break;
+            case 4:
+               break;
+         
+         }
+      
+      }
    
    }
 }
