@@ -1,9 +1,17 @@
 import java.sql.*;
-import Sources.GetInput;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Scanner;
+import javax.swing.*;
 
 public class DataLayer {
    private Connection conn;
    private Statement stmt;
+   private ResultSet rs;
+   private String sql;
+   
+   final String DEFAULT_DRIVER = "com.mysql.cj.jdbc.Driver";
+   final String url = "jdbc:mysql://localhost/library";
    
    final String DEFAULT_DRIVER = "com.mysql.cj.jdbc.Driver";
    final String url = "jdbc:mysql://localhost/library";
