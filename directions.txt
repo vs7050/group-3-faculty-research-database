@@ -13,16 +13,21 @@ PRESENTATION LAYER
 ===================================
 
 ++++++++++++++
-Database Login
+Student/Faculty Decision
 ++++++++++++++
-
-The presentation layer opens by printing out the author of our project. Then it connects to the faculty database. It will prompt the user for a username, which will be "root". It will then prompt the user for a password, which can be many things. It can either be a password that you made for SQL when downloading the program, or you can leave the password field blank and the password will default "student".
+Before logging in to the database, you will be presented with the choice on whether to log in as a student or faculty. Typing in as a student will give you the student options. Typing in as a faculty will give you the faculty options.
 
 ++++++++++++++
 Faculty Login
 ++++++++++++++
 
-The next step in the presentation layer is that you will be asked if you want to log in as a faculty. If you type in "Y", then you will prompted for a username and password. The faculty username is "faculty". The password for faculty currently is "faculty123". These can also be found hard coded in the presentation layer.
+When logging in as a faculty, it will prompt you for the username and password. The username for the faculty currently is "faculty". The password for the faculty is "faculty123". After logging in successfully, you will bre presented with the database login.
+
+++++++++++++++
+Database Login
+++++++++++++++
+
+The presentation layer opens by printing out the author of our project. Then it connects to the faculty database. It will prompt the user for a username, which will be "root". It will then prompt the user for a password, which can be many things. It can either be a password that you made for SQL when downloading the program, or you can leave the password field blank and the password will default "student".
 
 ++++++++++++++
 Faculty Options
@@ -33,3 +38,14 @@ Currently, there is not a lot of function to the faculty. The two options you ca
 The next option, being 2, will let you add an abstract. It will prompt you for the abstract and a date and input them.
 
 The last option, being 3, will exit the program.
+
+++++++++++++++
+Student Options
+++++++++++++++
+
+When you get to the options for student, you will be presented with 4 options.
+Option 1 will let you add a student as a student. You will be prompted to insert a first name and last name using the command prompt.
+Option 2 will have you add a student contact as a student. You will be asked to insert a student ID, room number, phone number and email.
+Option 3 lets you add interests for a student. You will be prompted to input a student ID to be your student and an interest ID to be your interest.
+Option 4 exits the program.
+All of these options will have an option to see all students and if you answer with a "Y", all the students will be printed out. From there you can see the student IDs.
