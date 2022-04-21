@@ -439,6 +439,37 @@ public class DataLayer {
       System.out.println("Number of Faculty Interests deleted -> " + records);
       return records;
    } // deleteFacultyInterest
+   
+   // will list off the students with IDs
+   public void doSeeStudents(){
+   
+      System.out.print("Would you like to see a list of all the students?(Y/N): ");
+      String yesNo = GetInput.readLine();
+      if(yesNo.equals("Y")){
+      
+         try{
+            String query = "SELECT * FROM student";
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+            
+               int id = rs.getInt(1);
+               String lname = rs.getString(2);
+               String fname = rs.getString(3);
+               System.out.println("\nStudent ID: " + id + " Student Name: " + lname + ", " + fname);
+            
+            
+            }
+         }
+         catch(SQLException sqle){
+         
+            System.out.println("ERROR MESSAGE -> " + sqle);
+         
+         }
+      
+      }
+   
+   }// end of doSeeStudents
       
    public boolean close() {
       try {
