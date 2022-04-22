@@ -478,6 +478,36 @@ public class DataLayer {
       }
    
    }// end of doSeeStudents
+   
+   public void doSeeFaculty(){
+   
+      System.out.print("Would you like to see a list of all the faculty?(Y/N): ");
+      String yesNo = GetInput.readLine();
+      if(yesNo.equals("Y")){
+      
+         try{
+            String query = "SELECT * FROM faculty";
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+            
+               int id = rs.getInt(1);
+               String lname = rs.getString(2);
+               String fname = rs.getString(3);
+               System.out.println("\nFacultyID: " + id + " Faculty Name: " + lname + ", " + fname);
+            
+            
+            }
+         }
+         catch(SQLException sqle){
+         
+            System.out.println("ERROR MESSAGE -> " + sqle);
+         
+         }
+      
+      }
+   
+   }// end of doSeeFaculty
       
    public boolean close() {
       try {
