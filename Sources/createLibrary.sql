@@ -18,7 +18,7 @@ CREATE TABLE Faculty(
 
 CREATE TABLE Abstract(
    abstractID INT UNSIGNED NOT NULL AUTO_INCREMENT,
-   abstract VARCHAR(300) NOT NULL,
+   abstract VARCHAR(1000) NOT NULL,
    abstractDate DATE NOT NULL,
    PRIMARY KEY (abstractID)
 );
