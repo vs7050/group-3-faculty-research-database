@@ -141,7 +141,7 @@ public class Presentation {
                System.out.println("Amount of records updated from faculty -> " + records);
                break;
             case 8:
-               break;
+               return;
          
          }
       
