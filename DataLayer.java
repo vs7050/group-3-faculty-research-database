@@ -1,9 +1,17 @@
 import java.sql.*;
-import Sources.GetInput;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Scanner;
+import javax.swing.*;
 
 public class DataLayer {
    private Connection conn;
    private Statement stmt;
+   private ResultSet rs;
+   private String sql;
+   
+   final String DEFAULT_DRIVER = "com.mysql.cj.jdbc.Driver";
+   final String url = "jdbc:mysql://localhost/library";
    
    final String DEFAULT_DRIVER = "com.mysql.cj.jdbc.Driver";
    final String url = "jdbc:mysql://localhost/library";
@@ -19,11 +27,16 @@ public class DataLayer {
       try {
          Class.forName(DEFAULT_DRIVER);
          
-         System.out.print("Username: ");
+         System.out.print("Username (default - root): ");
          userName = GetInput.readLine();
+         if(userName.equals("")){
+            
+            userName = "root";
          
-         System.out.print("Password: ");
-         passwordInput = GetInput.readLine();
+         }
+         
+         System.out.print("Password (default - student): ");
+         passwordInput = s.nextLine();
          
          if (passwordInput.equals("")) {
             password = "student";
@@ -94,6 +107,13 @@ public class DataLayer {
    } // deleteInterest
 
    /* ABSTRACT */
+
+   public void substringAbstract(String abs) {
+      String stripCommas = abs.replace(",", " ");
+      String absArray[] = stripCommas.split(" ");
+
+      
+   }
 
    public int createAbstract(String abs, String absDate) {
       int records = 0;
@@ -434,6 +454,119 @@ public class DataLayer {
       System.out.println("Number of Faculty Interests deleted -> " + records);
       return records;
    } // deleteFacultyInterest
+   
+   // will list off the students with IDs
+   public void doSeeStudents(){
+   
+      System.out.print("Would you like to see a list of all the students?(Y/N): ");
+      String yesNo = GetInput.readLine();
+      if(yesNo.equals("Y")){
+      
+         try{
+            String query = "SELECT * FROM student";
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+            
+               int id = rs.getInt(1);
+               String lname = rs.getString(2);
+               String fname = rs.getString(3);
+               System.out.println("\nStudent ID: " + id + " Student Name: " + lname + ", " + fname);
+            
+            
+            }
+         }
+         catch(SQLException sqle){
+         
+            System.out.println("ERROR MESSAGE -> " + sqle);
+         
+         }
+      
+      }
+   
+   }// end of doSeeStudents
+   
+   public void doSeeFaculty(){
+   
+      System.out.print("Would you like to see a list of all the faculty?(Y/N): ");
+      String yesNo = GetInput.readLine();
+      if(yesNo.equals("Y")){
+      
+         try{
+            String query = "SELECT * FROM faculty";
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+            
+               int id = rs.getInt(1);
+               String lname = rs.getString(2);
+               String fname = rs.getString(3);
+               System.out.println("\nFacultyID: " + id + " Faculty Name: " + lname + ", " + fname);
+            
+            
+            }
+         }
+         catch(SQLException sqle){
+         
+            System.out.println("ERROR MESSAGE -> " + sqle);
+         
+         }
+      
+      }
+   
+   }// end of doSeeFaculty
+   
+   public void doSeeInterest(){
+   
+      System.out.print("Would you like to see a list of all the interests?(Y/N): ");
+      String yesNo = GetInput.readLine();
+      if(yesNo.equals("Y")){
+      
+         try{
+            String query = "SELECT * FROM interest";
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+            
+               int id = rs.getInt(1);
+               String interest = rs.getString(2);
+               
+               System.out.println("\nInterestID: " + id + " Interest: " + interest);
+            
+            
+            }
+         }
+         catch(SQLException sqle){
+         
+            System.out.println("ERROR MESSAGE -> " + sqle);
+         
+         }
+      
+      }
+   
+   }// end of doSeeInterest
+
+   /* SEARCH */
+
+   public void searchStudent() {
+      try {
+         
+      } catch(SQLException sqle){
+         
+         System.out.println("ERROR MESSAGE -> " + sqle);
+      
+      }
+   } // searchStudent
+
+   public void searchFaculty() {
+      try {
+         
+      } catch(SQLException sqle){
+         
+         System.out.println("ERROR MESSAGE -> " + sqle);
+      
+      }
+   } // searchFaculty
       
    public boolean close() {
       try {
