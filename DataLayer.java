@@ -538,6 +538,28 @@ public class DataLayer {
       }
    
    }// end of doSeeInterest
+
+   /* SEARCH */
+
+   public void searchStudent() {
+      try {
+         
+      } catch(SQLException sqle){
+         
+         System.out.println("ERROR MESSAGE -> " + sqle);
+      
+      }
+   } // searchStudent
+
+   public void searchFaculty() {
+      try {
+         
+      } catch(SQLException sqle){
+         
+         System.out.println("ERROR MESSAGE -> " + sqle);
+      
+      }
+   } // searchFaculty
       
    public boolean close() {
       try {
