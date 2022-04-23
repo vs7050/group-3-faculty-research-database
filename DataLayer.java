@@ -508,6 +508,36 @@ public class DataLayer {
       }
    
    }// end of doSeeFaculty
+   
+   public void doSeeInterest(){
+   
+      System.out.print("Would you like to see a list of all the interests?(Y/N): ");
+      String yesNo = GetInput.readLine();
+      if(yesNo.equals("Y")){
+      
+         try{
+            String query = "SELECT * FROM interest";
+            stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while(rs.next()){
+            
+               int id = rs.getInt(1);
+               String interest = rs.getString(2);
+               
+               System.out.println("\nInterestID: " + id + " Interest: " + interest);
+            
+            
+            }
+         }
+         catch(SQLException sqle){
+         
+            System.out.println("ERROR MESSAGE -> " + sqle);
+         
+         }
+      
+      }
+   
+   }// end of doSeeInterest
       
    public boolean close() {
       try {
