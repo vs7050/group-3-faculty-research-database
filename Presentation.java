@@ -68,10 +68,11 @@ public class Presentation {
       
       }
       int choice = 0;
+      int records = 0;
       while(choice != 3){
       
          System.out.println("-----------------------------------------------------------------------");
-         System.out.print("\nEnter an option:\n1. Add a faculty\n2. Add an abstract\n3. Exit\n\nSelection: ");
+         System.out.print("\nEnter an option:\n1. Add a faculty\n2. Add faculty contact \n3. Add faculty interests \n4. Add an abstract\n5. Delete Faculty \n6. Delete Student \n7. Update Faculty \n8. Exit\n\nSelection: ");
          choice = Integer.parseInt(GetInput.readLine());
          switch(choice){
             case 1:
@@ -82,20 +83,71 @@ public class Presentation {
                dl.createFaculty(lName, fName);
                break;
             case 2:
+               dl.doSeeFaculty();
+               System.out.print("\nEnter your faculty ID: ");
+               int facID = GetInput.readInt();
+               System.out.print("\nEnter your room number: ");
+               int room = GetInput.readInt();
+               System.out.print("\nEnter your phone number: ");
+               String pn = GetInput.readLine();
+               System.out.print("\nEnter your email address: ");
+               String emailAd = GetInput.readLine();
+               System.out.print("\nEnter your office hours: ");
+               String officeHours = GetInput.readLine();
+               records = dl.createFacultyContact(facID, room, pn, emailAd, officeHours);
+               System.out.println("Amount of records added to faculty contact -> " + records);
+               break;
+            case 3:
+               dl.doSeeFaculty();
+               dl.doSeeInterest();
+               System.out.print("\nEnter a faculty ID: ");
+               int facultID = GetInput.readInt();
+               System.out.print("\nEnter an interest ID: ");
+               int intID = GetInput.readInt();
+               records = dl.createFacultyInterest(facultID, intID);
+               System.out.println("Amount of records added to faculty interest -> " + records);
+            case 4:
                System.out.print("\nEnter abstract text here: ");
                String abs = GetInput.readLine();
                System.out.print("\nEnter the abstract date(YYYY-MM-DD): ");
                String date = GetInput.readLine();
-               dl.createAbstract(abs, date);
+               records = dl.createAbstract(abs, date);
+               System.out.println("Amount of records added to abstract -> " + records);
                break;
-            case 3:
+            case 5:
+               dl.doSeeFaculty();
+               System.out.print("\nEnter a faculty ID: ");
+               int fID = GetInput.readInt();
+               records = dl.deleteFaculty(fID);
+               System.out.println("Amount of records deleted from faculty -> " + records);
+               break;
+            case 6:
+               dl.doSeeStudents();
+               System.out.print("\nEnter a student ID: ");
+               int stID = GetInput.readInt();
+               records = dl.deleteStudent(stID);
+               System.out.println("Amount of records deleted from student -> " + records);
+               break;
+            case 7:
+               dl.doSeeFaculty();
+               System.out.print("\nEnter a facultyID to update: ");
+               int facuID = GetInput.readInt();
+               System.out.print("\nEnter a first name to update: ");
+               String firstname = GetInput.readLine();
+               System.out.print("\nEnter a last name to update: ");
+               String lastname = GetInput.readLine();
+               records = dl.updateFaculty(facuID, lastname, firstname);
+               System.out.println("Amount of records updated from faculty -> " + records);
+               break;
+            case 8:
                break;
          
          }
       
       } 
    
-   }
+   }// end facultyloop
+   
    // loop for the student to choose options
    public void doStudentLoop(){
    
