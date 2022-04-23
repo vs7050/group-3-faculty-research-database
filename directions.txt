@@ -33,11 +33,17 @@ The presentation layer opens by printing out the author of our project. Then it 
 Faculty Options
 ++++++++++++++
 
-Currently, there is not a lot of function to the faculty. The two options you can do as a faculty is add faculty and add an abstract. Selecting the number 1 will let you input the faculty. It will prompt you for a last name and first name and add the faculty.
+You will be presented with options to choose from.
+Choosing option 1, you will have the option to create a faculty. You will be asked to provide a first name and last name.
+Choosing option 2, you will have the option to add a contact for a faculty. You can view the faculty ID, and then you will be asked to provide the ID, room number, phone number, email address, and office hours.
+Choosing option 3, you will have the option to add interests for faculty members. You will have the option to see faculty and interests, and then you can enter a faculty ID and interest ID to insert.
+Choosing option 4, you can have the option to add an abstract.
+Option 5, you will be able to delete a faculty member.
+Option 6, you will be able to delete a student.
+Option 7, you can update a faculty member.
+Option 8 exits the program.
 
-The next option, being 2, will let you add an abstract. It will prompt you for the abstract and a date and input them.
 
-The last option, being 3, will exit the program.
 
 ++++++++++++++
 Student Options
