@@ -547,7 +547,7 @@ public class DataLayer {
    }// end of doSeeInterest
 
    /* SEARCH */
-
+   /*
    public void searchStudent() {
       try {
          
@@ -567,7 +567,37 @@ public class DataLayer {
       
       }
    } // searchFaculty
-      
+   */
+   
+   public void searchFacultyInterest(String keyword) {
+      try 
+      {
+         PreparedStatement stmt = conn.prepareStatement("SELECT interestID FROM Interest WHERE interest LIKE ?");
+         stmt.setString(1, keyword);
+         ResultSet rs = stmt.executeQuery();
+         rs.next();
+         int interestID = rs.getInt(1);
+         stmt = conn.prepareStatement("SELECT * FROM (FacultyContact LEFT JOIN Faculty ON FacultyContact.facultyID = Faculty.facultyID) LEFT JOIN FacultyInterest ON FacultyContact.facultyID = FacultyInterest.facultyID WHERE FacultyInterest.interestID = ?");
+         stmt.setInt(1, interestID);
+         rs = stmt.executeQuery();
+         
+         ResultSetMetaData metadata = rs.getMetaData();
+         int columnCount = metadata.getColumnCount();
+         
+         while (rs.next()) {
+             String row = "";
+             for (int i = 1; i <= columnCount; i++) {
+                 row += rs.getString(i) + ", ";          
+             }
+             System.out.println(row);
+         }
+      } 
+      catch(SQLException sqle)
+      {
+         System.out.println("ERROR MESSAGE -> " + sqle);
+      }
+   } // searchFacultyInterest
+   
    public boolean close() {
       try {
          if (conn != null) {
