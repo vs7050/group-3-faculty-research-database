@@ -108,6 +108,13 @@ public class DataLayer {
 
    /* ABSTRACT */
 
+   public void substringAbstract(String abs) {
+      String stripCommas = abs.replace(",", " ");
+      String absArray[] = stripCommas.split(" ");
+
+      
+   }
+
    public int createAbstract(String abs, String absDate) {
       int records = 0;
       try {
