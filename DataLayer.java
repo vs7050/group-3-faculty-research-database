@@ -4,14 +4,13 @@ import java.awt.event.*;
 import java.util.Scanner;
 import javax.swing.*;
 
+import Sources.GetInput;
+
 public class DataLayer {
    private Connection conn;
    private Statement stmt;
    private ResultSet rs;
    private String sql;
-   
-   final String DEFAULT_DRIVER = "com.mysql.cj.jdbc.Driver";
-   final String url = "jdbc:mysql://localhost/library";
    
    final String DEFAULT_DRIVER = "com.mysql.cj.jdbc.Driver";
    final String url = "jdbc:mysql://localhost/library";
