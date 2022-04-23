@@ -36,7 +36,7 @@ public class DataLayer {
          }
          
          System.out.print("Password (default - student): ");
-         passwordInput = s.nextLine();
+         passwordInput = GetInput.readLine();
          
          if (passwordInput.equals("")) {
             password = "student";
