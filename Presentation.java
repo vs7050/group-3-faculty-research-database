@@ -157,7 +157,7 @@ public class Presentation {
       while(choice != 3){
       
          System.out.println("\n-----------------------------------------------------------------------");
-         System.out.print("\nEnter an option:\n1. Add Student\n2. Add Student Contact\n3. Add Interests\n4. Exit\n\nSelection: ");
+         System.out.print("\nEnter an option:\n1. Add Student\n2. Add Student Contact\n3. Add Interests\n4. Search Faculty Interests\n5. Exit\n\nSelection: ");
          choice = Integer.parseInt(GetInput.readLine());
          switch(choice){
          
@@ -193,7 +193,12 @@ public class Presentation {
                System.out.println("Amount of records added to studentInterest -> " + records);
                break;
             case 4:
+               System.out.print("\nEnter interest to search: ");
+               String keyword = GetInput.readLine();
+               dl.searchFacultyInterest(keyword);
                break;
+            case 5:
+               return;
          
          }
       
