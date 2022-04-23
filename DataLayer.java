@@ -23,6 +23,7 @@ public class DataLayer {
       String userName = "";
       String password = new String();
       String passwordInput = new String();
+      Scanner s = new Scanner(System.in);
 
       try {
          Class.forName(DEFAULT_DRIVER);
@@ -36,7 +37,7 @@ public class DataLayer {
          }
          
          System.out.print("Password (default - student): ");
-         passwordInput = GetInput.readLine();
+         passwordInput = s.nextLine();
          
          if (passwordInput.equals("")) {
             password = "student";
